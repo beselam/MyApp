@@ -1,52 +1,74 @@
 import React from "react";
-import { StyleSheet, Text, Dimensions,View ,FlatList,TouchableOpacity,Image} from "react-native";
-import PropTypes from 'prop-types';
 
-const ListItem = (props)=>{
-return(
-    <TouchableOpacity style={styles.touchableStyle} >
-    <Image
-      style={{width: 150, height: 280 ,}}
-      source={{uri: props.singleMedia.thumbnails.w160}}
-    />
-    <View  style={styles.textV}>
-      <Text>{props.singleMedia.title}</Text>
-      <Text style={styles.textContent}>{props.singleMedia.description}</Text>
-    </View>
-  </TouchableOpacity>
-)
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
+import PropTypes from "prop-types";
+
+const ListItem = props => {
+  return (
+    <TouchableOpacity style={styles.row}>
+      <View style={styles.imagebox}>
+        <Image
+          style={styles.image}
+          source={{ uri: props.singleMedia.thumbnails.w160 }}
+        />
+      </View>
+
+      <View style={styles.textbox}>
+        <Text style={styles.listTitle}>{props.singleMedia.title}</Text>
+
+        <Text>{props.singleMedia.description}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+
+    padding: 15,
+
+    backgroundColor: "#ccc",
+
+    marginBottom: 5,
+
+    borderRadius: 16
+  },
+
+  imagebox: {
+    flex: 1
+  },
+
+  image: {
+    flex: 1,
+
+    width: "100%",
+
+    height: 150,
+
+    borderRadius: 16
+  },
+
+  textbox: {
+    flex: 1,
+
+    padding: 10
+  },
+
+  listTitle: {
+    fontWeight: "bold",
+
+    fontSize: 20,
+
+    paddingBottom: 15
+  }
+});
+
+ListItem.propTypes = {
+  singleMedia: PropTypes.object,
+
+  navigation: PropTypes.object
 };
 
 export default ListItem;
-
-const styles = StyleSheet.create({
-
-    touchableStyle:{
-      width: Dimensions.get('window').width,
-      minHeight:300,
-      flex:1,
-      flexDirection:'row',
-      backgroundColor:'gray',
-      marginBottom:5,
-      paddingLeft:10,
-      alignItems:'center'
-     
-  
-     
-    },
-    textV:{
-      height:300,
-      paddingLeft:30,
-      paddingTop:50,
-      
-     
-    },
-    textContent:{
-
-      height:300,
-     paddingRight:160,
-     paddingTop:10,
-    }
- 
-  });

@@ -1,31 +1,31 @@
+import React, { useContext } from "react";
 
-import React from "react";
-import { StyleSheet, Text, View ,FlatList,TouchableOpacity,Image} from "react-native";
-import PropTypes from 'prop-types';
-import ListItem from '../components/ListItem'
+import { FlatList } from "react-native";
 
+import ListItem from "./ListItem";
 
- const List = (props) => {
-    console.log(props);
-    return (
-      <FlatList 
-        style={styles.flatStyle}
-        data={props.mediaArray}
-        renderItem={({item}) => <ListItem singleMedia={item} />}
-      />
-    );
-  };
+import { MediaContext } from "../contexts/MediaContext";
 
-  export default List;
+import { useFetch } from "../hooks/APIHooks";
 
+const List = () => {
+  const [media, setMedia] = useContext(MediaContext);
 
-  const styles = StyleSheet.create({
-  
-    flatStyle:{
-      flex:1,
-      backgroundColor:'black',
-   
-  
-    }
-  
-  });
+  const [data, loading] = useFetch(
+    "https://raw.githubusercontent.com/mattpe/wbma/master/docs/assets/test.json"
+  );
+
+  console.log(data);
+
+  setMedia(data);
+
+  return (
+    <FlatList
+      data={media}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => <ListItem singleMedia={item} />}
+    />
+  );
+};
+
+export default List;
