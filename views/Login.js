@@ -120,7 +120,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingTop: 40
+  },
+  form:{
+      width:'90%'
   }
+
 });
 
 // proptypes here
