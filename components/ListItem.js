@@ -4,13 +4,22 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
 import PropTypes from "prop-types";
 
+const mediaURL = "http://media.mw.metropolia.fi/wbma/uploads/";
+import AsyncImage from './AsyncImage';
+
 const ListItem = props => {
+  console.log("list item props", props.singleMedia);
+
   return (
-    <TouchableOpacity style={styles.row}>
+    <TouchableOpacity style={styles.row} onPress={() =>{ props.navigation.push('Single',{file: props.singleMedia});
+      }
+    }>
       <View style={styles.imagebox}>
-        <Image
+      <AsyncImage
+          resizeMode='contain'
+          spinnerColor='#b3e5fc'
           style={styles.image}
-          source={{ uri: props.singleMedia.thumbnails.w160 }}
+          source={{uri: mediaURL + props.singleMedia.thumbnails.w160}}
         />
       </View>
 
