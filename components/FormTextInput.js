@@ -12,7 +12,11 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "#ccc",
     borderWidth: 1,
-    
+    width:'80%',
+    borderRadius:10,
+    marginLeft:25,
+    paddingLeft:10,
+    marginBottom:10,
   }
 });
 
