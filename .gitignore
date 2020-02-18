@@ -9,6 +9,11 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
-
+Upload.js
+UploadHooks.js
 # macOS
 .DS_Store
+./constants
+./utils
+utils
+constants
